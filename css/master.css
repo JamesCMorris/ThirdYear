@@ -1,0 +1,69 @@
+/* MOBILE AND GLOBAL STYLES */
+/* Applies rules for the body and the grids of the pages*/
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-content: center;
+  margin-left: 20%;
+  margin-right: 25%;
+    background: #F7F1F1;
+}
+
+.wrapper-head {
+    background: #F7F1F1;
+}
+
+.nav {
+  background-color: #555;
+  overflow: auto;
+  margin-left: 345px;
+  position: absolute;
+  top: 0;
+}
+
+.nav a {
+  display: flex;
+  float:left;
+  padding: 14px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.logo {
+  float: left;
+  position: absolute;
+  top:0;
+}
+
+.nav a:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+/* TABLET STYLES */
+@media screen and (min-width: 500px) {
+
+  /* applies to screens wider than 499px */
+  /*Redefining styles for grid and body content for screens larger than 499px*/
+  body {
+
+  }
+
+.navbar a {
+  float: none;
+  display: block;
+}
+
+
+  /* DESKTOP STYLES */
+  @media screen and (min-width: 1000px) {
+
+    /* Applies to screens wider than 999px */
+    body {
+
+    }
+  }
