@@ -148,8 +148,9 @@ nav ul {
 
 nav li {
   display: inline-block;
-  margin-left: 26px;
+  margin-left: 70px;
   padding-top: 20px;
+
   position: relative;
 }
 
@@ -157,8 +158,11 @@ nav a {
   color: #444;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 17px;
+  font-size: 16px;
   display: block;
+  padding-left: 20px;
+  padding-top: 8px;
+  padding-bottom: 3px;
 }
 
 .logo {
@@ -168,14 +172,14 @@ nav a {
   padding-bottom: 12px;
 }
 
+nav a:hover {
+  color: #000;
+}
 
 
 
 nav a:hover::before {
   width: 100%;
-}
-
-.active {
 
 }
 
@@ -187,12 +191,19 @@ nav a:hover::before {
 }
 
 .menu {
-  background: #01AE97;
-  text-align: center;
-  color: #fff;
-  margin-left: 300px;
-  padding-top: 30px;
-  padding-bottom: 29px;
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 6%;
+  padding-top: 12px;
+
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
 }
 
 .menu-toggle {
@@ -205,7 +216,7 @@ nav a:hover::before {
 
     /* Applies to screens wider than 999px */
     body {
-      grid-template-columns: 14% 1fr 1fr 10%;
+      grid-template-columns: 10% 1fr 1fr 10%;
       grid-template-areas:
         "header header header header"
         ". side main ."
@@ -215,6 +226,7 @@ nav a:hover::before {
     nav {
       padding-bottom: 14px;
       float: right;
+      clear: both;
       display: flex;
       flex-direction: row;
     }
@@ -225,11 +237,37 @@ nav a:hover::before {
 
     nav li {
       display: inline-block;
+      margin-left: 70px;
+      padding-top: 23px;
+
+      position: relative;
 
     }
 
     nav a {
+      color: #444;
+      text-decoration: none;
+      text-transform: uppercase;
       font-size: 16px;
+      display: block;
+      padding-left: 20px;
+      padding-top: 8px;
+      padding-bottom: 3px;
+    }
+
+    nav a::before {
+      content: '';
+      display: block;
+      height: 5px;
+      width: 100%;
+      background-color: #444;
+      margin-bottom: 13px;
+
+
+      top: 0;
+      width: 0%;
+
+      transition: all ease-in-out 200ms;
     }
 
     .menu {
@@ -238,8 +276,4 @@ nav a:hover::before {
 
     .logo {
       padding-bottom: 5px;
-    }
-
-    .menu-icon {
-      display: none;
     }
