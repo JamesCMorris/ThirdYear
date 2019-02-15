@@ -1,69 +1,245 @@
 /* MOBILE AND GLOBAL STYLES */
 /* Applies rules for the body and the grids of the pages*/
+html, body {
+  margin: 0;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  align-content: center;
-  margin-left: 20%;
-  margin-right: 25%;
-    background: #F7F1F1;
+  display: grid;
+
+  justify-content: center;
+  grid-template-columns:
+    20% 1fr 20%;
+  grid-template-areas:
+    "header header header"
+    ". main ."
+    ". side ."
+    "footer footer footer"
 }
+
+
+header {
+  grid-area: header;
+  background: #00DAB0;
+  width:100%;
+}
+
+footer {
+  grid-area: footer;
+}
+
+.main-content {
+  grid-area: main;
+}
+
+.sidebar {
+  grid-area: side;
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0 20px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 18px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.85;
+}
+
+button:hover {
+  opacity: 1;
+}
+
+.cancelbutton {
+  padding: 14px, 18px;
+  background-color: #f44336;
+}
+
+.cancelbutton, .submitbutton {
+  float: left;
+  width: 50%;
+}
+
+.container-signup {
+  padding: 36px;
+}
+
+.signup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #474e5d;
+  padding-top: 50px;
+}
+
+.signup-content {
+  background-color: #fefefe;
+  margin: 5% auto 5% auto;
+  border: 1px solid #888;
+  width: 80%;
+  height: 100%;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 20px;
+}
+
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover, .close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+.clearfix::after {
+  content: "";
+  clear:both;
+  display: table;
+}
+
+
 
 .wrapper-head {
-    background: #F7F1F1;
+    width: 80%;
+    margin: 0 auto;
 }
 
-.nav {
-  background-color: #555;
-  overflow: auto;
-  margin-left: 345px;
-  position: absolute;
-  top: 0;
+nav {
+  display:none;
+  clear: both;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.nav a {
-  display: flex;
-  float:left;
-  padding: 14px;
-  color: white;
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 26px;
+  padding-top: 20px;
+  position: relative;
+}
+
+nav a {
+  color: #444;
   text-decoration: none;
-  font-size: 18px;
+  text-transform: uppercase;
+  font-size: 17px;
+  display: block;
 }
 
 .logo {
+  height: auto;
+  width: 250px;
   float: left;
-  position: absolute;
-  top:0;
+  padding-bottom: 12px;
 }
 
-.nav a:hover {
-  background-color: #000;
+
+
+
+nav a:hover::before {
+  width: 100%;
 }
 
 .active {
-  background-color: #4CAF50;
+
 }
 
-/* TABLET STYLES */
-@media screen and (min-width: 500px) {
+.signup {
+  padding: 5px;
+}
 
-  /* applies to screens wider than 499px */
-  /*Redefining styles for grid and body content for screens larger than 499px*/
-  body {
+.menu-nav {
+}
 
-  }
+.menu {
+  background: #01AE97;
+  text-align: center;
+  color: #fff;
+  margin-left: 300px;
+  padding-top: 30px;
+  padding-bottom: 29px;
+}
 
-.navbar a {
-  float: none;
-  display: block;
+.menu-toggle {
+  display: flex;
 }
 
 
   /* DESKTOP STYLES */
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 880px) {
 
     /* Applies to screens wider than 999px */
     body {
+      grid-template-columns: 14% 1fr 1fr 10%;
+      grid-template-areas:
+        "header header header header"
+        ". side main ."
+        "footer footer footer footer"
+    }
+
+    nav {
+      padding-bottom: 14px;
+      float: right;
+      display: flex;
+      flex-direction: row;
+    }
+
+    nav ul {
+      display: inherit;
+    }
+
+    nav li {
+      display: inline-block;
 
     }
-  }
+
+    nav a {
+      font-size: 16px;
+    }
+
+    .menu {
+      display: none;
+    }
+
+    .logo {
+      padding-bottom: 5px;
+    }
+
+    .menu-icon {
+      display: none;
+    }
