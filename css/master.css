@@ -7,7 +7,6 @@ html, body {
 body {
   font-family: Arial, Helvetica, sans-serif;
   display: grid;
-
   justify-content: center;
   grid-template-columns:
     20% 1fr 20%;
@@ -18,11 +17,10 @@ body {
     "footer footer footer"
 }
 
-
 header {
   grid-area: header;
   background: #00DAB0;
-  width:100%;
+  width: 100%;
 }
 
 footer {
@@ -31,10 +29,12 @@ footer {
 
 .main-content {
   grid-area: main;
+  padding: 10px 0;
 }
 
 .sidebar {
   grid-area: side;
+  padding-bottom: 100px;
 }
 
 input[type=text], input[type=password] {
@@ -98,7 +98,6 @@ button:hover {
   margin: 5% auto 5% auto;
   border: 1px solid #888;
   width: 80%;
-  height: 100%;
 }
 
 hr {
@@ -122,19 +121,17 @@ hr {
 
 .clearfix::after {
   content: "";
-  clear:both;
+  clear: both;
   display: table;
 }
 
-
-
 .wrapper-head {
-    width: 80%;
-    margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
 }
 
 nav {
-  display:none;
+  display: none;
   clear: both;
   justify-content: center;
   flex-direction: column;
@@ -150,7 +147,6 @@ nav li {
   display: inline-block;
   margin-left: 70px;
   padding-top: 20px;
-
   position: relative;
 }
 
@@ -169,33 +165,28 @@ nav a {
   height: auto;
   width: 250px;
   float: left;
-  padding-bottom: 12px;
+  padding: 3px 0;
 }
 
 nav a:hover {
   color: #000;
 }
 
-
-
 nav a:hover::before {
   width: 100%;
-
 }
 
 .signup {
   padding: 5px;
 }
 
-.menu-nav {
-}
+.menu-nav {}
 
 .menu {
   display: inline-block;
   cursor: pointer;
   margin-left: 6%;
   padding-top: 12px;
-
 }
 
 .bar1, .bar2, .bar3 {
@@ -210,70 +201,65 @@ nav a:hover::before {
   display: flex;
 }
 
+/* DESKTOP STYLES */
+@media screen and (min-width: 880px) {
 
-  /* DESKTOP STYLES */
-  @media screen and (min-width: 880px) {
+  /* Applies to screens wider than 999px */
+  body {
+    grid-template-columns: 10% 240px 1fr 10%;
+    grid-template-areas:
+      "header header header header"
+      ". side main ."
+      "footer footer footer footer"
+  }
 
-    /* Applies to screens wider than 999px */
-    body {
-      grid-template-columns: 10% 1fr 1fr 10%;
-      grid-template-areas:
-        "header header header header"
-        ". side main ."
-        "footer footer footer footer"
-    }
+  nav {
+    padding-bottom: 14px;
+    float: right;
+    clear: both;
+    display: flex;
+    flex-direction: row;
+  }
 
-    nav {
-      padding-bottom: 14px;
-      float: right;
-      clear: both;
-      display: flex;
-      flex-direction: row;
-    }
+  nav ul {
+    display: inherit;
+  }
 
-    nav ul {
-      display: inherit;
-    }
+  nav li {
+    display: inline-block;
+    margin-left: 70px;
+    padding-top: 23px;
+    position: relative;
+  }
 
-    nav li {
-      display: inline-block;
-      margin-left: 70px;
-      padding-top: 23px;
+  nav a {
+    color: #444;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    display: block;
+    padding-left: 20px;
+    padding-top: 8px;
+    padding-bottom: 3px;
+  }
 
-      position: relative;
+  nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    width: 100%;
+    background-color: #444;
+    margin-bottom: 13px;
+    top: 0;
+    width: 0%;
+    transition: all ease-in-out 200ms;
+  }
 
-    }
+  .menu {
+    display: none;
+  }
 
-    nav a {
-      color: #444;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 16px;
-      display: block;
-      padding-left: 20px;
-      padding-top: 8px;
-      padding-bottom: 3px;
-    }
+  .logo {
+    padding: 5px 0  ;
 
-    nav a::before {
-      content: '';
-      display: block;
-      height: 5px;
-      width: 100%;
-      background-color: #444;
-      margin-bottom: 13px;
-
-
-      top: 0;
-      width: 0%;
-
-      transition: all ease-in-out 200ms;
-    }
-
-    .menu {
-      display: none;
-    }
-
-    .logo {
-      padding-bottom: 5px;
-    }
+  }
