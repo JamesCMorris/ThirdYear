@@ -108,7 +108,7 @@ session_start();
            ?>
         </section>
         <p><b>Send Email</b></p>
-        <form class="contact-form" action="contactform.php" method="post">
+        <form class="contact-form" action="php/includes/contactform.php" method="post">
           <input type="text" name="name" placeholder="Full Name">
           <input type="text" name="email" placeholder="Your email">
           <input type="text" name="subject" placeholder="Subject">

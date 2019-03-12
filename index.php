@@ -41,12 +41,12 @@ session_start();
       if (isset($_SESSION['userId'])) {
         echo '<h2>Log Out</h2>
         <form class="logout" action="/php/includes/logout.php" method="post">
-            <button type="submit" name="logout-submit">Log Out</button>
+            <button type="submit" class="submitbutton" name="logout-submit">Log Out</button>
         </form>';
       }
       else {
         echo '<h2>Sign Up Here!</h2>
-        <button onclick="document.getElementById(\'signupblock\').style.display=\'block\'" style="width: auto; justify-content: center;">Sign Up</button>
+        <button onclick="document.getElementById(\'signupblock\').style.display=\'block\'" style="width: auto;">Sign Up</button>
         <div id="signupblock" class="signup">
           <span onclick="document.getElementById(\'signupblock\').style.display=\'none\'" class="close" title="Close Signup">&times;</span>
 
