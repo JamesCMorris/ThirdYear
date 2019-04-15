@@ -3,6 +3,7 @@ if (isset($_POST['signup-submit'])) {
 
   require 'C:\xampp\htdocs\php\includes\dbh.php';
 
+//Establishes variables from inputs//
   $username = $_POST['username'];
   $fullname = $_POST['fullname'];
   $postcode = $_POST['postcode'];
@@ -11,6 +12,7 @@ if (isset($_POST['signup-submit'])) {
   $password = $_POST['pwd'];
   $passwordRepeat = $_POST['pwd-repeat'];
 
+//Validation for forms//
   if (empty($username) || empty($fullname) || empty($postcode) || empty($email) || empty($position) || empty($password) || empty($passwordRepeat)) {
     header("Location:http://localhost/index.php?error=emptyfields&username=".$username."&fullname=".$fullname."&postcode=".$postcode."&email=".$email."&position=".$position."&pwd=".$password."&pwd-repeat=".$passwordRepeat);
     exit;
@@ -33,6 +35,7 @@ if (isset($_POST['signup-submit'])) {
   }
   else {
 
+//Prepared statements for SQL queries//
     $sql = "SELECT userName FROM users WHERE userName=?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -50,6 +53,7 @@ if (isset($_POST['signup-submit'])) {
       }
       else {
 
+//Insert into users database the user details//
         $sql = "INSERT INTO users (userName, fullName, postCode, email, position, userPwd) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {

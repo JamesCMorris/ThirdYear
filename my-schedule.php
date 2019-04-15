@@ -11,6 +11,17 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VolleyHUB</title>
     <link rel="stylesheet" href="/css/master.css">
+    <link href='fullcalendar/packages/core/main.css' rel='stylesheet' />
+    <link href='fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
+    <link rel='stylesheet' href='fullcalendar/packages/bootstrap/main.css'/>
+    <link rel="stylesheet" href="fullcalendar/packages/list/main.css">
+
+    <script src='fullcalendar/packages/core/main.js'></script>
+    <script src='fullcalendar/packages/daygrid/main.js'></script>
+    <script src='fullcalendar/packages/interaction/main.js'></script>
+      <script src='fullcalendar/packages/list/main.js'></script>
+    <script src='fullcalendar/packages/google-calendar/main.js'></script>
+
 </head>
 
 <body>
@@ -27,7 +38,7 @@ session_start();
             <a href="index.php">Homepage</a>
             <a href="browse.php">Browse</a>
             <a href="my-profile.php">My Profile</a>
-            <a href="my-clubs.php">My Clubs</a>
+            <a href="my-schedule.php">My Schedule</a>
             <a href="contact.php">Contact Us</a>
             <a href="sign-in.php">Sign In</a>
         </nav>
@@ -40,7 +51,7 @@ session_start();
           if (isset($_SESSION['userId'])) {
             echo '<h2>Log Out</h2>
             <form class="logout" action="/php/includes/logout.php" method="post">
-                <button type="submit" name="logout-submit">Log Out</button>
+                <button type="submit" class="submitbutton" name="logout-submit">Log Out</button>
             </form>';
           }
           else {
@@ -99,17 +110,56 @@ session_start();
       <section>
         <?php
           if (isset($_SESSION['userId'])) {
-            echo '<p class="login-status">You are logged in!</p>';
+            echo "<h2>Your Schedule!</h2>";
+              echo '<p class="login-status">You are logged in as ' . $_SESSION['userName'] . '!</p>';?>
+<div id="calendar">
+
+            <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+              var calendarEl = document.getElementById('calendar');
+
+              var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: [ 'dayGrid', 'list', 'googleCalendar' ],
+                header: {
+                  left: 'prev,next, today',
+                  center: 'title',
+                  right: 'dayGridMonth, listYear'
+                },
+                displayEventTime: true,
+                googleCalendarApiKey: 'AIzaSyCrLnYcYdx7mso78J6jUS_I797hHsq_yH0',
+                events: {
+                  googleCalendarId: 'james1232morris@gmail.com'
+                },
+                eventClick: function(arg) {
+                  window.open(arg.event.url, '_blank', 'width=700, height=600');
+                  arg.jsEvent.preventDefault();
+                }
+
+              });
+
+              calendar.render();
+            });
+
+            </script>
+          </br>
+        </br>
+</div>
+        <?php
+
           }
           else {
-            echo '<p class="login-status">You are logged out!</p>';
+            echo "<h2>Welcome to VolleyHUB!</h2></br>";
+            echo '<p class="login-status">You must be logged in to view your schedule!</p>';
           }
          ?>
       </section>
+      <div class="club-create">
+
+      </div>
     </div>
 
     <footer>
-      Footer Content
     </footer>
 
 

@@ -29,7 +29,7 @@ session_start();
           <a href="index.php">Homepage</a>
           <a href="browse.php">Browse</a>
           <a href="my-profile.php">My Profile</a>
-          <a href="my-clubs.php">My Clubs</a>
+          <a href="my-schedule.php">My Schedule</a>
           <a href="contact.php">Contact Us</a>
           <a href="sign-in.php">Sign In</a>
         </nav>
@@ -42,7 +42,7 @@ session_start();
           if (isset($_SESSION['userId'])) {
             echo '<h2>Log Out</h2>
             <form class="logout" action="/php/includes/logout.php" method="post">
-                <button type="submit" name="logout-submit">Log Out</button>
+                <button type="submit" class="submitbutton" name="logout-submit">Log Out</button>
             </form>';
           }
           else {
@@ -103,12 +103,12 @@ session_start();
       <p>An email will be sent to you with instructions on how to reset your password!</p>
       <form class="" action="php/includes/reset-request.php" method="post">
         <input type="text" name="email" placeholder="Enter your email address..">
-        <button type="submit" name="submit-reset-request">Receive new password by email</button>
+        <button type="submit" class="submitbutton" name="submit-reset-request">Receive new password by email</button>
       </form>
       <?php
         if (isset($_GET["reset"])) {
           if ($_GET["reset"] == "success") {
-          echo '<p class="signup-success">Check your email!</p>';
+          echo '</br></br></br></br><p class="signup-success">Check your email!</p>';
           }
         }
        ?>
@@ -116,7 +116,7 @@ session_start();
     </div>
 
     <footer>
-      Footer Content
+
     </footer>
 
 

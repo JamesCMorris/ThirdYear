@@ -1,13 +1,15 @@
 <?php
 
 if (isset($_POST["submit-reset-request"])) {
-
+//Establishes selector and token random variables//
   $selector = bin2hex(random_bytes(8));
   $token = random_bytes(32);
 
+//Url to be sent to the user to reset password//
   $url = "http://localhost/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
 
-  $expires = date("U") + 1800;
+//Expiration date for link (1 hour from creation)//
+  $expires = date("U") + 3600;
 
   require 'C:\xampp\htdocs\php\includes\dbh.php';
 
@@ -23,6 +25,7 @@ if (isset($_POST["submit-reset-request"])) {
      mysqli_stmt_execute($stmt);
   }
 
+//Insert reset data into database//
   $sql = "INSERT INTO pwdReset (pwdResetEmail, pwdResetSelector, pwdResetToken, pwdResetExpires) VALUES (?, ?, ?, ?);";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -40,7 +43,7 @@ if (isset($_POST["submit-reset-request"])) {
 
   require 'PHPMailer\PHPMailerAutoload.php';
 
-
+//PHPMailer functions//
   $to = $userEmail;
 
   $mail = new PHPMailer();
@@ -52,7 +55,7 @@ if (isset($_POST["submit-reset-request"])) {
   $mail->SMTPSecure = "ssl";
   $mail->Port = 465;
   $mail->Subject = "Reset your password for VolleyHUB";
-  $mail->Body = "We received a password reset request. The link to reset your password is below. If you did not make this request, you canignore this request. The link will expire within an hour.
+  $mail->Body = "We received a password reset request. The link to reset your password is below. If you did not make this request, you can ignore this request. The link will expire within an hour.
 
                 Here is your password reset link: $url ";
   $mail->setFrom('volleyhubhelp@gmail.com', 'VH');
@@ -62,14 +65,6 @@ if (isset($_POST["submit-reset-request"])) {
   } else {
     echo "Email sent";
   }
-
-  //$headers = "From: vhhelp <volleyhubhelp@gmail.com\r\n";
-  //$headers .= "Reply-To: volleyhubhelp@gmail.com\r\n";
-  //$headers .= "Content-type: text/html\r\n";
-
-
-
-  //mail($to, $subject, $message, $headers);
 
   header("Location: http://localhost/password-reset.php?reset=success");
 

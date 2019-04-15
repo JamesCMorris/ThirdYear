@@ -1,24 +1,29 @@
 <?php
-
+//Only accessible from the reset password submit button//
   if (isset($_POST["reset-password-submit"])) {
 
+//Establishes variables//
     $selector = $_POST["selector"];
     $validator = $_POST["validator"];
     $password = $_POST["pwd"];
     $passwordRepeat = $_POST["pwd-repeat"];
 
+//Empty check//
       if (empty($selector) || empty($validator)) {
         header("Location: http://localhost/create-new-password.php?newpwd=empty");
         exit();
+        //Check if password and repeated password are the same//
       } elseif ($password != $passwordRepeat) {
         header("Location: http://localhost/create-new-password.php?newpwd=nomatch");
         exit();
       }
-
+//Creates the current date as variable U so timeout on email link can be established//
       $currentDate = date("U");
 
+//Gets database functions//
       require 'C:\xampp\htdocs\php\includes\dbh.php';
 
+//SQL query for the reset password database to store validator and selector and token//
       $sql = "SELECT * FROM `pwdreset` WHERE `pwdResetSelector`= ? AND `pwdResetExpires` >= ?";
       $stmt = mysqli_stmt_init($conn);
       if (!mysqli_stmt_prepare($stmt, $sql)) {

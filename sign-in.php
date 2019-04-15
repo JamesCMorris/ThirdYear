@@ -29,7 +29,7 @@ session_start();
           <a href="index.php">Homepage</a>
           <a href="browse.php">Browse</a>
           <a href="my-profile.php">My Profile</a>
-          <a href="my-clubs.php">My Clubs</a>
+          <a href="my-schedule.php">My Schedule</a>
           <a href="contact.php">Contact Us</a>
           <a href="sign-in.php">Sign In</a>
         </nav>
@@ -42,7 +42,7 @@ session_start();
           if (isset($_SESSION['userId'])) {
             echo '<h2>Log Out</h2>
             <form class="logout" action="/php/includes/logout.php" method="post">
-                <button type="submit" name="logout-submit">Log Out</button>
+                <button type="submit" class="submitbutton" name="logout-submit">Log Out</button>
             </form>';
           }
           else {
@@ -98,13 +98,14 @@ session_start();
     </div>
 
     <div class="main-content">
-      <h2>Login Here!</h2>
       <div class="login-container">
         <?php
         if (isset($_SESSION['userId'])) {
-          echo '<p class="login-status">You are logged in!</p>';
+            echo '<p class="login-status">You are logged in as ' . $_SESSION['userName'] . '!</p>';
         }
         else {
+          echo "<h2>Welcome to VolleyHUB!</h2></br>";
+          echo "<h2>Login Here!</h2>";
           echo '<p class="login-status">You are logged out!</p>';
         }
          ?>
@@ -117,9 +118,6 @@ session_start();
           <input type="password" placeholder="Enter Password" name="password" required>
 
           <button type="submit" name="login-submit">Login</button>
-          <label>
-            <input type="checkbox" checked="checked" name="remember">Remember me!
-          </label>
           </br>
           </br>
           <?php
@@ -129,13 +127,12 @@ session_start();
               }
             }
            ?>
-          <span class="password-reset">Forgot <a href="password-reset.php">password?</a></span>
+          <h3><span class="password-reset">Forgot <a href="password-reset.php">password?</a></span></h3>
         </div>
       </form>
     </div>
 
     <footer>
-      Footer Content
     </footer>
 
 

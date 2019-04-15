@@ -11,6 +11,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VolleyHUB</title>
     <link rel="stylesheet" href="/css/master.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/tabledit/jquery.tabledit.js"></script>
+    <script type="text/javascript" src="/js/custom-table-edit.js"></script>
 </head>
 
 <body>
@@ -28,7 +31,7 @@ session_start();
               <a href="index.php">Homepage</a>
               <a href="browse.php">Browse</a>
               <a href="my-profile.php">My Profile</a>
-              <a href="my-clubs.php">My Clubs</a>
+              <a href="my-schedule.php">My Schedule</a>
               <a href="contact.php">Contact Us</a>
               <a href="sign-in.php">Sign In</a>
           </nav>
@@ -41,7 +44,7 @@ session_start();
             if (isset($_SESSION['userId'])) {
               echo '<h2>Log Out</h2>
               <form class="logout" action="/php/includes/logout.php" method="post">
-                  <button type="submit" name="logout-submit">Log Out</button>
+                  <button type="submit" class="submitbutton" name="logout-submit">Log Out</button>
               </form>';
             }
             else {
@@ -100,17 +103,35 @@ session_start();
         <section>
           <?php
             if (isset($_SESSION['userId'])) {
-              echo '<p class="login-status">You are logged in!</p>';
+              echo "<h2>Your Profile Page!</h2>";
+              echo '<p class="login-status">You are logged in as ' . $_SESSION['userName'] . '!</p>';
+
+              $sql = "SELECT userName, fullName, postCode, email, position FROM users WHERE userId = '" . $_SESSION['userId'] . "'";
+              $result = mysqli_query($conn, $sql);
+
+
+
+              echo "<table id=\"myTable\">";
+
+              while ($row = mysqli_fetch_array($result)) {
+                echo "<tr><th>Your Username: </th><td>" . $row['userName'] . "</td></tr>
+                      <tr><th>Your Full Name: </th><td>" . $row['fullName'] . "</td></tr>
+                      <tr><th>Your Post Code: </th><td>" . $row['postCode'] . "</td></tr>
+                      <tr><th>Your Contact Email: </th><td>" . $row['email'] . "</td></tr>
+                      <tr><th>Your Court Position: </th><td>" . $row['position'] . "</td></tr>";
+              }
+              echo "</table></br>";
+
             }
             else {
-              echo '<p class="login-status">You are logged out!</p>';
+              echo "<h2>Welcome to VolleyHUB!</h2></br>";
+              echo '<p class="login-status">You must be logged in to view your profile!</p>';
             }
            ?>
         </section>
       </div>
 
       <footer>
-        Footer Content
       </footer>
 
 

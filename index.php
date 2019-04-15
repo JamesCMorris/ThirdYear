@@ -29,7 +29,7 @@ session_start();
         <a href="index.php">Homepage</a>
         <a href="browse.php">Browse</a>
         <a href="my-profile.php">My Profile</a>
-        <a href="my-clubs.php">My Clubs</a>
+        <a href="my-schedule.php">My Schedule</a>
         <a href="contact.php">Contact Us</a>
         <a href="sign-in.php">Sign In</a>
       </nav>
@@ -56,19 +56,19 @@ session_start();
               <p>Please submit your details here.</p>
               <hr>
               <label for="username"><b>Username</b></label>
-              <input type="text" name="username" placeholder="Username" required>
+              <input type="text" name="username" placeholder="Enter Username.." required>
               </br>
               <label for="fullname"><b>Full Name</b></label>
-              <input type="text" name="fullname" placeholder="Full Name" required>
+              <input type="text" name="fullname" placeholder="Enter Full Name.." required>
               </br>
               <label for="postcode"><b>Postcode</b></label>
-              <input type="text" name="postcode" placeholder="Postcode" required>
+              <input type="text" name="postcode" placeholder="Enter Postcode.." required>
               </br>
               <label for="email"><b>Email</b></label>
-              <input type="text" name="email" placeholder="Email Address" required>
+              <input type="text" name="email" placeholder="Enter Email Address.." required>
               </br>
               <label for="position"><b>Position</b></label>
-              <input type="text" name="position" placeholder="Position" required>
+              <input type="text" name="position" placeholder="Enter Court Position.." required>
               </br>
               <label for="pwd"><b>Password</b></label>
               <input type="password" name="pwd" placeholder="Password" required>
@@ -76,12 +76,6 @@ session_start();
               <label for="repeatpwd"><b>Repeat Password</b></label>
               <input type="password" name="pwd-repeat" placeholder="Repeat Password" required>
               </br>
-              <label>
-                <input type="checkbox" name="rememberuser" checked="checked" style="margin-bottom:15px">
-                Remember Me!
-              </label>
-
-              <p> By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Conditions</a>.</p>
 
               <div class="clearfix">
                 <button type="button" onclick="document.getElementById(\'signupblock\').style.display=\'none\'" class="cancelbutton">Cancel</button>
@@ -99,16 +93,29 @@ session_start();
     <section>
       <?php
         if (isset($_SESSION['userId'])) {
-          echo '<p class="login-status">You are logged in!</p>';
+          echo '<p class="login-status">You are logged in as ' . $_SESSION['userName'] . '!</p>';echo "<h2>Welcome to VolleyHUB!</h2></br>";
+          echo "<h3>VolleyHUB aims to be the number one place for volleyball players to organise themselves and search for local clubs and teams to play with. On this site, you will be able to create an secure and safe account, browse clubs on the site, add items to your own personal calendar to keep yourself up to date with training and game times.</h3></br>";
+          echo "<p>If you spot a problem or a bug on the site, please don't hesistate to use the 'Contact Us' page on VolleyHUB to report it and we will fix the issue as soon as possible!</p>";
+          echo "<p>Now that you've made an account, you are free to access all features of the website!</p>";
         }
         else {
+          echo "<h2>Welcome to VolleyHUB!</h2></br>";
           echo '<p class="login-status">You are logged out!</p>';
+          echo "<h3>VolleyHUB aims to be the number one place for volleyball players to organise themselves and search for local clubs and teams to play with. On this site, you will be able to create an secure and safe account, browse clubs on the site, add items to your own personal calendar to keep yourself up to date with training and game times.</h3></br>";
+          echo "<p>If you spot a problem or a bug on the site, please don't hesistate to use the 'Contact Us' page on VolleyHUB to report it and we will fix the issue as soon as possible!</p>";
+          echo "<h3>To make an account, use the 'Sign In' section of the website to log in!</h3></br>";
+          if (isset($_GET["signup"])) {
+            if ($_GET["signup"] == "success") {
+            echo '</br></br></br></br><h3>Account successfully created! Please sign in to continue!<h3>';
+            }
+          }
+
         }
        ?>
     </section>
 </div>
   <footer>
-    Footer Content
+
   </footer>
 
   <script src="js/master.js"></script>

@@ -7,18 +7,16 @@ session_start();
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VolleyHUB</title>
-  <link rel="stylesheet" href="/css/master.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolleyHUB</title>
+    <link rel="stylesheet" href="/css/master.css">
 </head>
 
 <body>
-
-  <body>
-    <header>
-      <div class="wrapper-head">
-        <a href="index.php"><img src="images/logo.png" alt="VolleyHUB Logo" class="logo"></a>
+  <header>
+    <div class="wrapper-head">
+      <a href="index.php"><img src="images/logo.png" alt="VolleyHUB Logo" class="logo"></a>
         <div class="menu" id="menu-toggle">
           <div class="bar1"></div>
           <div class="bar2"></div>
@@ -26,12 +24,12 @@ session_start();
         </div>
 
         <nav id="menu-nav">
-          <a href="index.php">Homepage</a>
-          <a href="browse.php">Browse</a>
-          <a href="my-profile.php">My Profile</a>
-          <a href="my-clubs.php">My Clubs</a>
-          <a href="contact.php">Contact Us</a>
-          <a href="sign-in.php">Sign In</a>
+            <a href="index.php">Homepage</a>
+            <a href="browse.php">Browse</a>
+            <a href="my-profile.php">My Profile</a>
+            <a href="my-schedule.php">My Schedule</a>
+            <a href="contact.php">Contact Us</a>
+            <a href="sign-in.php">Sign In</a>
         </nav>
       </div>
     </header>
@@ -42,7 +40,7 @@ session_start();
           if (isset($_SESSION['userId'])) {
             echo '<h2>Log Out</h2>
             <form class="logout" action="/php/includes/logout.php" method="post">
-                <button type="submit" name="logout-submit">Log Out</button>
+                <button type="submit" class="submitbutton" name="logout-submit">Log Out</button>
             </form>';
           }
           else {
@@ -98,46 +96,56 @@ session_start();
     </div>
 
     <div class="main-content">
-      <h2>Login Here!</h2>
-      <div class="login-container">
+      <section>
         <?php
-        if (isset($_SESSION['userId'])) {
-          echo '<p class="login-status">You are logged in!</p>';
-        }
-        else {
-          echo '<p class="login-status">You are logged out!</p>';
-        }
+          if (isset($_SESSION['userId'])) {
+              echo '<p class="login-status">You are logged in as ' . $_SESSION['userName'] . '!</p>';
+            echo '<form action="/php/includes/creates.php" method="POST">
+
+                <h1>VolleyHUB Create a Club</h1>
+                <p>Please submit your club details here.</p>
+                <hr>
+                <label for="clubaname"><b>Club Name</b></label>
+                <input type="text" name="clubname" placeholder="Enter club name.." required>
+                </br>
+                <label for="clubaddress"><b>Club Address</b></label>
+                <input type="text" name="clubaddress" placeholder="Enter club address.." required>
+                </br>
+                <label for="clubcity"><b>Club City</b></label>
+                <input type="text" name="clubcity" placeholder="Enter city.." required>
+                </br>
+                <label for="clubcontact"><b>Club Contact</b></label>
+                <input type="text" name="clubcontact" placeholder="Enter club contact name.." required>
+                </br>
+                <label for="clubphone"><b>Club Phone Number</b></label>
+                <input type="text" name="clubphone" placeholder="Enter contact number.." required>
+                </br>
+                <label for="clubemail"><b>Club Email</b></label>
+                <input type="text" name="clubemail" placeholder="Enter contact email.." required>
+                </br>
+                <label for="clubwebpage"><b>Club Webpage</b></label>
+                <input type="text" name="clubwebpage" placeholder="Enter club webpage..">
+                </br>
+                <label for="clubcoaches"><b>Club Coaches</b></label>
+                <input type="text" name="clubcoaches" placeholder="Enter club coaches..">
+                </br>
+                <label for="clubnotes"><b>Club Bio</b></label>
+                <input type="text" name="clubnotes" placeholder="Enter club bio..">
+                </br>
+                <button type="submit" name="club-submit" class="submitbutton">Create Club</button>
+                ';
+          }
+          else {
+            echo '<p class="login-status">You must be logged in to view your clubs!</p>';
+          }
+
          ?>
-      <form action="php/includes/login.php" method="post">
+      </section>
+      <div class="club-create">
 
-          <label for="username"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="username" required>
-
-          <label for="password"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="password" required>
-
-          <button type="submit" name="login-submit">Login</button>
-          <label>
-            <input type="checkbox" checked="checked" name="remember">Remember me!
-          </label>
-          </br>
-          </br>
-          <?php
-            if (isset($_GET["newpwd"])) {
-              if ($_GET["newpwd"] == "passwordupdated") {
-                echo '<p class="password-change-success">Your password has been reset!</p>';
-              }
-            }
-           ?>
-          <span class="password-reset">Forgot <a href="password-reset.php">password?</a></span>
-        </div>
-      </form>
+      </div>
     </div>
 
     <footer>
-      Footer Content
+      
     </footer>
-
-
-    <script src="js/master.js"></script>
-  </body>

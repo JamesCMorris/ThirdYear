@@ -28,7 +28,7 @@ session_start();
               <a href="index.php">Homepage</a>
               <a href="browse.php">Browse</a>
               <a href="my-profile.php">My Profile</a>
-              <a href="my-clubs.php">My Clubs</a>
+              <a href="my-schedule.php">My Schedule</a>
               <a href="contact.php">Contact Us</a>
               <a href="sign-in.php">Sign In</a>
           </nav>
@@ -41,7 +41,7 @@ session_start();
             if (isset($_SESSION['userId'])) {
               echo '<h2>Log Out</h2>
               <form class="logout" action="/php/includes/logout.php" method="post">
-                  <button type="submit" name="logout-submit">Log Out</button>
+                  <button type="submit" class="submitbutton" name="logout-submit">Log Out</button>
               </form>';
             }
             else {
@@ -100,13 +100,15 @@ session_start();
         <section>
           <?php
             if (isset($_SESSION['userId'])) {
-              echo '<p class="login-status">You are logged in!</p>';
+                echo '<p class="login-status">You are logged in as ' . $_SESSION['userName'] . '!</p>';
             }
             else {
+              echo "<h2>Welcome to VolleyHUB!</h2></br>";
               echo '<p class="login-status">You are logged out!</p>';
             }
            ?>
         </section>
+        <h2>Need To Contact Us?</h2>
         <p><b>Send Email</b></p>
         <form class="contact-form" action="php/includes/contactform.php" method="post">
           <input type="text" name="name" placeholder="Full Name">
@@ -115,10 +117,17 @@ session_start();
           <textarea name="message" placeholder="Message"></textarea>
           <button type="submit" name="submit">Send Email</button>
         </form>
+      </br>
+      <?php
+      if (isset($_GET["mailsend"])) {
+        if ($_GET["mailsend"] == "success") {
+          echo "<p class=\"signup-success\">Thank you for your submission! We will act upon it as soon as possible!</p>";
+        }
+      }
+       ?>
       </div>
 
       <footer>
-        Footer Content
       </footer>
 
 

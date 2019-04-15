@@ -1,3 +1,5 @@
+
+//JavaScript script to toggle the mobile menu//
 const menuToggle = document.getElementById("menu-toggle");
 const menuNav = document.getElementById("menu-nav");
 

@@ -4,6 +4,7 @@ html, body {
   margin: 0;
 }
 
+/*CSS Grid Parameters*/
 body {
   font-family: Arial, Helvetica, sans-serif;
   display: grid;
@@ -17,6 +18,7 @@ body {
     "footer footer footer"
 }
 
+/*Header, Footer, Sidebar and Main Content grid area set*/
 header {
   grid-area: header;
   background: #00DAB0;
@@ -37,6 +39,7 @@ footer {
   padding-bottom: 100px;
 }
 
+/*Styles for Signup window block*/
 input[type=text], input[type=password] {
   width: 100%;
   padding: 12px;
@@ -51,8 +54,12 @@ input[type=text]:focus, input[type=password]:focus {
   outline: none;
 }
 
+h3 {
+  font-size: 1.4em;
+}
+
 button {
-  background-color: #4CAF50;
+  background-color: #00DAB0;
   color: white;
   padding: 14px 18px;
   margin: 8px 0;
@@ -74,6 +81,7 @@ button:hover {
 .cancelbutton, .submitbutton {
   float: left;
   width: 50%;
+  background-color: #00DAB0;
 }
 
 .container-signup {
@@ -130,6 +138,7 @@ hr {
   margin: 0 auto;
 }
 
+/*Menu Styles*/
 nav {
   display: none;
   clear: both;
@@ -147,7 +156,7 @@ nav li {
   display: inline-block;
   margin-left: 70px;
   padding-top: 20px;
-  position: relative;
+  order-table position: relative;
 }
 
 nav a {
@@ -180,8 +189,6 @@ nav a:hover::before {
   padding: 5px;
 }
 
-.menu-nav {}
-
 .menu {
   display: inline-block;
   cursor: pointer;
@@ -189,6 +196,7 @@ nav a:hover::before {
   padding-top: 12px;
 }
 
+/*Mobile Menu Toggle Style*/
 .bar1, .bar2, .bar3 {
   width: 35px;
   height: 5px;
@@ -199,6 +207,38 @@ nav a:hover::before {
 
 .menu-toggle {
   display: flex;
+}
+
+/*Table for Browse page*/
+#light-table-filter {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 40%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
 }
 
 /* DESKTOP STYLES */

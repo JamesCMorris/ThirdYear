@@ -29,7 +29,7 @@ session_start();
           <a href="index.php">Homepage</a>
           <a href="browse.php">Browse</a>
           <a href="my-profile.php">My Profile</a>
-          <a href="my-clubs.php">My Clubs</a>
+          <a href="my-schedule.php">My Schedule</a>
           <a href="contact.php">Contact Us</a>
           <a href="sign-in.php">Sign In</a>
         </nav>
@@ -42,7 +42,7 @@ session_start();
           if (isset($_SESSION['userId'])) {
             echo '<h2>Log Out</h2>
             <form class="logout" action="/php/includes/logout.php" method="post">
-                <button type="submit" name="logout-submit">Log Out</button>
+                <button type="submit" class="submitbutton" name="logout-submit">Log Out</button>
             </form>';
           }
           else {
@@ -101,6 +101,12 @@ session_start();
       <section class="section-default">
 
         <?php
+          if (isset($_SESSION['userId'])) {
+              echo '<p class="login-status">You are logged in as ' . $_SESSION['userName'] . '!</p>';
+          }
+          else {
+            echo '<p class="login-status">You are logged out!</p>';
+          }
           $selector = $_GET["selector"];
           $validator = $_GET["validator"];
 
@@ -113,7 +119,9 @@ session_start();
                 <form action="php/includes/reset-password.php" method="post">
                   <input type="hidden" name="selector" value="<?php echo $selector ?>">
                   <input type="hidden" name="validator" value="<?php echo $validator ?>">
+                  <label for="pwd"><b>Enter New Pasword</b></label>
                   <input type="password" name="pwd" placeholder="Enter a new password..">
+                  <label for="pwd-repeat"><b>Repeat New Password</b></label>
                   <input type="password" name="pwd-repeat" placeholder="Repeat new password..">
                   <button type="submit" name="reset-password-submit">Reset password</button>
                 </form>
@@ -126,5 +134,4 @@ session_start();
     </div>
 
     <footer>
-      Footer Content
     </footer>
